@@ -11,7 +11,7 @@ const Cart = () => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor:'#E5E5E5'}}>
       <h2>Cart</h2>
       {cart.length === 0 ? (
         <p>No items in cart</p>

@@ -13,6 +13,7 @@ const AddProduct = () => {
     e.preventDefault();
     const newProduct = { id: Date.now(), name, price, description, rating };
     dispatch(addProduct(newProduct));
+    window.alert("Product Added Successfully")
     setName('');
     setPrice('');
     setDescription('');
@@ -20,36 +21,38 @@ const AddProduct = () => {
   };
 
   return (
+    <div className='AddProduct'>
     <form onSubmit={handleSubmit}>
+      <label>Name</label>
       <input
         type="text"
-        placeholder="Product Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
       />
-      <input
-        type="number"
-        placeholder="Price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-        required
-      />
+      <label>Description</label>
       <textarea
-        placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         required
       />
+      <label>Price</label>
       <input
         type="number"
-        placeholder="Rating"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        required
+      />
+      <label>Rating</label>
+      <input
+        type="number"
         value={rating}
         onChange={(e) => setRating(e.target.value)}
         required
       />
       <button type="submit">Add Product</button>
     </form>
+    </div>
   );
 };
 

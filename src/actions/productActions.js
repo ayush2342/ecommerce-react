@@ -3,7 +3,7 @@ import axios from 'axios';
 export const fetchProducts = () => async (dispatch) => {
   dispatch({ type: 'FETCH_PRODUCTS_REQUEST' });
   try {
-    const response = await axios.get('https://my-json-server.typicode.com/your-repo/products');
+    const response = await axios.get('https://my-json-server.typicode.com/ayush2342/dataRepo/products');
     dispatch({ type: 'FETCH_PRODUCTS_SUCCESS', payload: response.data });
   } catch (error) {
     dispatch({ type: 'FETCH_PRODUCTS_FAILURE', payload: error.message });

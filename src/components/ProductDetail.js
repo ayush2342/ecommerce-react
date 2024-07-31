@@ -19,14 +19,20 @@ const ProductDetail = () => {
   };
 
   return (
-    <div>
-      <h2>{product.name}</h2>
-      <p>Rs {product.price}</p>
-      <p>{product.description}</p>
-      <p>Rating: {product.rating}</p>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+    <div className="product-item">
+      <img src={product.image} alt={product.name} style={{ width: '200px', height: '200px' }} />
+      <div className="details">
+        <h2>{product.name}</h2>
+        <p>Rs {product.price}</p>
+        <p>{product.description}</p>
+        <p>Rating: {product.rating}</p>
+      </div>
+      <div className="actions">
+        <button onClick={handleAddToCart}>Add to Cart</button>
+      </div>
     </div>
   );
 };
 
 export default ProductDetail;
+
