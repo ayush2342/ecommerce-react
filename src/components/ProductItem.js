@@ -2,20 +2,40 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteProduct, editProduct } from '../actions/productActions';
 import { addToCart } from '../actions/cartActions';
-import EditProduct from './EditProduct';
-import { FaEdit, FaTrashAlt, FaCartPlus } from 'react-icons/fa';
+import { FaEdit, FaTrashAlt, FaCartPlus, FaSave, FaTimes } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 
 const ProductItem = ({ product }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [editedProduct, setEditedProduct] = useState({ ...product });
   const dispatch = useDispatch();
 
   const handleDelete = () => {
     dispatch(deleteProduct(product.id));
   };
 
-  const handleEdit = (updatedProduct) => {
-    dispatch(editProduct(updatedProduct));
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    dispatch(editProduct(editedProduct));
     setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setEditedProduct({ ...product });
+    setIsEditing(false);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleRatingChange = (e) => {
+    const value = parseInt(e.target.value, 10);
+    setEditedProduct((prev) => ({ ...prev, rating: value }));
   };
 
   const handleAddToCart = () => {
@@ -27,24 +47,73 @@ const ProductItem = ({ product }) => {
       <div className="product-details">
         <img src={product.image} alt={product.name} className="product-image" />
         <div className="product-info">
-          <h2>{product.name}</h2>
-          <p>Rs {product.price}</p>
+          {isEditing ? (
+            <input
+              type="text"
+              name="name"
+              value={editedProduct.name}
+              onChange={handleChange}
+              style={{ border: 'none', fontSize: 'inherit', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
+            />
+          ) : (
+            <h2>{product.name}</h2>
+          )}
+          {isEditing ? (
+            <input
+              type="number"
+              name="price"
+              value={editedProduct.price}
+              onChange={handleChange}
+              style={{ border: 'none', fontSize: 'inherit', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
+            />
+          ) : (
+            <p>Rs {product.price}</p>
+          )}
           <div className="product-rating">
-            {Array(product.rating).fill().map((_, i) => (
-              <span key={i}>⭐</span>
-            ))}
+            {isEditing ? (
+              <select
+                name="rating"
+                value={editedProduct.rating}
+                onChange={handleRatingChange}
+                style={{ border: 'none', fontSize: 'inherit', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
+              >
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <option key={star} value={star}>
+                    {star} Star{star > 1 && 's'}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              Array(product.rating)
+                .fill()
+                .map((_, i) => (
+                  <FaStar key={i} />
+                ))
+            )}
           </div>
         </div>
         <div className="product-description">
-          <p className="description">{product.description}</p>
+          {isEditing ? (
+            <textarea
+              name="description"
+              value={editedProduct.description}
+              onChange={handleChange}
+              style={{ border: 'none', fontSize: 'inherit', width: '100%', height: '100px', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
+            />
+          ) : (
+            <p className="description">{product.description}</p>
+          )}
         </div>
       </div>
       <div className="product-actions">
         {isEditing ? (
-          <EditProduct product={product} onSave={handleEdit} onCancel={() => setIsEditing(false)} />
+          <>
+            <button onClick={handleSave}><FaSave /></button>
+            <button onClick={handleCancel}><FaTimes /></button>
+          </>
         ) : (
           <>
-            <button onClick={() => setIsEditing(true)}><FaEdit /></button>
+            <button onClick={handleEdit}><FaEdit /></button>
             <button onClick={handleDelete}><FaTrashAlt /></button>
             <button onClick={handleAddToCart}><FaCartPlus /></button>
           </>
@@ -55,3 +124,4 @@ const ProductItem = ({ product }) => {
 };
 
 export default ProductItem;
+

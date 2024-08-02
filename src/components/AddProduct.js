@@ -7,53 +7,74 @@ const AddProduct = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [rating, setRating] = useState('');
+  const [image, setImage] = useState(null);
   const dispatch = useDispatch();
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProduct = { id: Date.now(), name, price, description, rating };
+    const newProduct = { id: Date.now(), name, price, description, rating, image };
     dispatch(addProduct(newProduct));
-    window.alert("Product Added Successfully")
+    window.alert("Product Added Successfully");
     setName('');
     setPrice('');
     setDescription('');
     setRating('');
+    setImage(null);
   };
 
   return (
     <div className='AddProduct'>
-    <form onSubmit={handleSubmit}>
-      <label>Name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <label>Description</label>
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-      />
-      <label>Price</label>
-      <input
-        type="number"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-        required
-      />
-      <label>Rating</label>
-      <input
-        type="number"
-        value={rating}
-        onChange={(e) => setRating(e.target.value)}
-        required
-      />
-      <button type="submit">Add Product</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <label>Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <label>Description</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <label>Price</label>
+        <input
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          required
+        />
+        <label>Rating</label>
+        <input
+          type="number"
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
+          required
+        />
+        <label>Image</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+        />
+        {image && <img src={image} alt="Product preview" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />}
+        <button type="submit">Add Product</button>
+      </form>
     </div>
   );
 };
 
 export default AddProduct;
+
