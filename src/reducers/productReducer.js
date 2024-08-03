@@ -109,7 +109,8 @@ const productReducer = (state = initialState, action) => {
     case 'CLEAR_SORT':
       return {
         ...state,
-        products: action.payload,
+        products: [...state.products].sort((a, b) => a.name.localeCompare(b.name)),
+        // products: action.payload,
       };
     default:
       return state;
