@@ -1,4 +1,3 @@
-/* General styling for the app */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -74,8 +73,8 @@ button {
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 80%; /* Ensure it does not occupy full width */
-  margin: 1rem auto; /* Center align */
+  max-width: 80%; 
+  margin: 1rem auto;
 }
 
 .product-details {
@@ -135,22 +134,24 @@ button {
 
 /* Sort Container */
 .sort-container {
+  width: 91%;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 1rem;
   gap: 0.5rem;
 }
 
 /* Sort Button */
 .sort-button {
+ 
   background-color: #f0f0f0;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 12px; 
   padding: 0.5rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .sort-button:hover {
@@ -187,8 +188,8 @@ button {
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 80%; /* Ensure it does not occupy full width */
-  margin: 1rem auto; /* Center align */
+  max-width: 80%; 
+  margin: 1rem auto; 
 }
 
 /* Container for image and text */
@@ -216,8 +217,8 @@ button {
 /* Cart description styling */
 .cart-description {
   margin-top: 0.5rem;
-  font-size: 0.9rem; /* Adjust font size as needed */
-  color: #555; /* Gray color for description */
+  font-size: 0.9rem; 
+  color: #555; 
 }
 
 .cart-actions {
@@ -234,9 +235,9 @@ button {
   cursor: pointer;
   padding: 0;
   font-size: 1rem;
-  color: #e74c3c; /* Remove button color */
+  color: #e74c3c; 
 }
 
 .cart-actions button:hover {
-  color: #c0392b; /* Darker red for hover effect */
+  color: #c0392b; 
 }

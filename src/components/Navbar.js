@@ -1,17 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus,FaShoppingCart  } from 'react-icons/fa';
 
 const Navbar = () => {
   const cartCount = useSelector((state) => state.cart.cart.length);
 
   return (
     <nav>
-      <Link to="/">eCommerce</Link>
+      <div style={{width:'40%',display:'flex',justifyContent:'space-evenly'}}>
+      <Link to="/" style={{color:'#3090FC'}}>eCommerce</Link>
       <Link to="/">Products</Link>
       <Link to="/add-product">Add a product <FaPlus /></Link>
-      <Link to="/cart">Cart ({cartCount})</Link>
+      </div>
+      <div>
+      <Link to="/cart">Ayush Sharma  <FaShoppingCart/> ({cartCount})</Link>
+      </div>
+      
     </nav>
   );
 };

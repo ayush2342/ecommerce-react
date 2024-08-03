@@ -25,7 +25,6 @@ const AddProduct = () => {
     e.preventDefault();
     const newProduct = { id: Date.now(), name, price, description, rating, image };
     dispatch(addProduct(newProduct));
-    window.alert("Product Added Successfully");
     setName('');
     setPrice('');
     setDescription('');
@@ -60,6 +59,9 @@ const AddProduct = () => {
         <input
           type="number"
           value={rating}
+          min="1"
+          max="5"
+          step="1"
           onChange={(e) => setRating(e.target.value)}
           required
         />

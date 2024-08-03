@@ -9,6 +9,8 @@ import AddProduct from './components/AddProduct';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
+          <ToastContainer />
         </Router>
       </PersistGate>
     </Provider>
@@ -29,4 +32,3 @@ function App() {
 }
 
 export default App;
-

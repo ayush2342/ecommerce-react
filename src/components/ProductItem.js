@@ -4,6 +4,7 @@ import { deleteProduct, editProduct } from '../actions/productActions';
 import { addToCart } from '../actions/cartActions';
 import { FaEdit, FaTrashAlt, FaCartPlus, FaSave, FaTimes } from 'react-icons/fa';
 import { FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ProductItem = ({ product }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -101,7 +102,9 @@ const ProductItem = ({ product }) => {
               style={{ border: 'none', fontSize: 'inherit', width: '100%', height: '100px', boxShadow: '0 0 5px rgba(0, 0, 0, 0.2)' }}
             />
           ) : (
-            <p className="description">{product.description}</p>
+            <p className="description">{product.description}
+            </p>
+            
           )}
         </div>
       </div>
@@ -116,6 +119,7 @@ const ProductItem = ({ product }) => {
             <button onClick={handleEdit}><FaEdit /></button>
             <button onClick={handleDelete}><FaTrashAlt /></button>
             <button onClick={handleAddToCart}><FaCartPlus /></button>
+            <Link to={`/product/${product.id}`}>Details</Link>
           </>
         )}
       </div>
