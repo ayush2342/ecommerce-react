@@ -23,7 +23,7 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProduct = { id: Date.now(), name, price, description, rating, image };
+    const newProduct = {id: Date.now(),name,price,description,rating: parseInt(rating, 10),image};
     dispatch(addProduct(newProduct));
     setName('');
     setPrice('');

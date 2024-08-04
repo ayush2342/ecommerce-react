@@ -50,4 +50,4 @@ npm start
 The application is hosted on https://ayush2342.github.io/ecommerce-react/
 
 ## Video Explanation
-A video explaining the project, including the code and final product, is available at Video Link.
+A video explaining the project, including the code and final product, is available at https://youtu.be/PYMWMzUzsb0

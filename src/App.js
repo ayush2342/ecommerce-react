@@ -20,6 +20,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<ProductList />} />
+            <Route path="/ecommerce-react" element={<ProductList />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
